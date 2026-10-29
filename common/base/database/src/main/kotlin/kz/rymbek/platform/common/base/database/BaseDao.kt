@@ -4,25 +4,25 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.RawQuery
+import androidx.room.RoomRawQuery
 import androidx.room.Update
 import androidx.room.Upsert
-import androidx.sqlite.db.SupportSQLiteQuery
 
 interface BaseDao<Entity> {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(entity: Entity): Long
+    suspend fun insertOrIgnore(entity: Entity): Long // -1, если строка уже есть
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(entities: List<Entity>): LongArray
+    suspend fun insertOrIgnore(entities: List<Entity>): LongArray
 
     @Update
-    suspend fun update(entity: Entity)
+    suspend fun update(entity: Entity): Int
 
     @Update
-    suspend fun update(entities: List<Entity>)
+    suspend fun update(entities: List<Entity>): Int
 
     @Upsert
-    suspend fun upsert(entity: Entity): Long
+    suspend fun upsert(entity: Entity): Long // -1, если строка обновлена, а не вставлена
 
     @Upsert
     suspend fun upsert(entities: List<Entity>): LongArray
@@ -34,7 +34,5 @@ interface BaseDao<Entity> {
     suspend fun delete(entities: List<Entity>)
 
     @RawQuery
-    suspend fun getItem(
-        query: SupportSQLiteQuery,
-    ): Entity
+    suspend fun findOne(query: RoomRawQuery): Entity?
 }

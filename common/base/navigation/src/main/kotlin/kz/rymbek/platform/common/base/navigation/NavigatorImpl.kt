@@ -48,16 +48,13 @@ internal class NavigatorImpl(
      * Go back to the previous navigation key.
      */
     override fun navigateBack() {
-        when (navigationState.currentKey) {
-            navigationState.startKey -> error("You cannot go back from the start route")
-
-            navigationState.currentTopLevelKey -> {
-                // We're at the base of the current sub stack, go back to the previous top level
-                // stack.
-                navigationState.topLevelStack.removeLastOrNull()
-            }
-
-            else -> navigationState.currentSubStack.removeLastOrNull()
+        when {
+            !navigationState.isAtTopLevel -> navigationState.currentSubStack.removeLastOrNull()
+            navigationState.currentTopLevelKey == navigationState.startKey ->
+                error("You cannot go back from the start route")
+            // We're at the base of the current sub stack, go back to the previous top level
+            // stack.
+            else -> navigationState.topLevelStack.removeLastOrNull()
         }
     }
 

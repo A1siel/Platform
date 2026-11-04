@@ -1,5 +1,6 @@
 package kz.rymbek.platform.common.base.navigation
 
+import androidx.annotation.VisibleForTesting
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -16,14 +17,23 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 
 /**
  * Create a navigation state that persists config changes and process death.
+ *
+ * @param startKey - the starting top level key.
+ * @param topLevelKeys - the top level keys, each of which gets its own sub stack.
+ * @param deepLinkKey - optional deep link key to use as the initial destination of the [startKey]
+ * sub stack.
  */
 @Composable
 fun rememberNavigationState(
     startKey: NavKey,
     topLevelKeys: Set<NavKey>,
+    deepLinkKey: NavKey? = null,
 ): NavigationState {
     val topLevelStack = rememberNavBackStack(startKey)
-    val subStacks = topLevelKeys.associateWith { key -> rememberNavBackStack(key) }
+    val subStacks = topLevelKeys.associateWith { key ->
+        val firstKey = if (key == startKey && deepLinkKey != null) deepLinkKey else key
+        rememberNavBackStack(firstKey)
+    }
 
     return remember(startKey, topLevelKeys) {
         NavigationState(
@@ -51,11 +61,15 @@ class NavigationState(
     val topLevelKeys
         get() = subStacks.keys
 
+    @get:VisibleForTesting
     val currentSubStack: NavBackStack<NavKey>
         get() = subStacks[currentTopLevelKey]
             ?: error("Sub stack for $currentTopLevelKey does not exist")
 
+    @get:VisibleForTesting
     val currentKey: NavKey by derivedStateOf { currentSubStack.last() }
+
+    val isAtTopLevel: Boolean by derivedStateOf { currentSubStack.size == 1 }
 }
 
 /**
@@ -77,5 +91,7 @@ fun NavigationState.toEntries(
         )
     }
 
-    return topLevelStack.flatMap { decoratedEntries[it] ?: emptyList() }.toMutableStateList()
+    return topLevelStack
+        .flatMap { decoratedEntries[it] ?: emptyList() }
+        .toMutableStateList()
 }

@@ -3,7 +3,9 @@ package kz.rymbek.platform.common.base.converter
 import androidx.room.TypeConverter
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.builtins.SetSerializer
+import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.Json
 
 abstract class BaseConverter<T>(
@@ -26,4 +28,17 @@ abstract class BaseConverter<T>(
 
     @TypeConverter
     fun setToString(data: Set<T>): String = Json.encodeToString(SetSerializer(serializer), data)
+
+    @TypeConverter
+    fun toMap(data: String): Map<String, T> =
+        if (data.isBlank()) emptyMap() else Json.decodeFromString(
+            MapSerializer(
+                String.serializer(),
+                serializer
+            ), data
+        )
+
+    @TypeConverter
+    fun mapToString(data: Map<String, T>): String =
+        Json.encodeToString(MapSerializer(String.serializer(), serializer), data)
 }

@@ -27,8 +27,8 @@ fun AppDatePickerPreview() {
 
 @Composable
 fun AppDatePicker(
-    modifier: Modifier = Modifier,
     state: DatePickerState,
+    modifier: Modifier = Modifier,
     dateFormatter: DatePickerFormatter = remember { DatePickerDefaults.dateFormatter() },
     colors: DatePickerColors = DatePickerDefaults.colors(),
     title: (@Composable () -> Unit)? = {

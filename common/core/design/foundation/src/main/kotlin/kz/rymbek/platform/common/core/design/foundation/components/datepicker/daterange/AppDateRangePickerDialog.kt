@@ -4,7 +4,6 @@ import androidx.compose.material3.DatePickerColors
 import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.DateRangePickerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
@@ -13,7 +12,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.datepicker.ba
 
 @Composable
 fun AppDateRangePickerDialog(
-    isShow: MutableState<Boolean>,
+    onDismissRequest: () -> Unit,
     onDateRangeSelected: (Pair<Long?, Long?>) -> Unit,
     modifier: Modifier = Modifier,
     dateRangePickerState: DateRangePickerState = rememberDateRangePickerStateCustom(),
@@ -23,13 +22,8 @@ fun AppDateRangePickerDialog(
     properties: DialogProperties = DialogProperties(usePlatformDefaultWidth = false),
 ) {
     BaseDatePickerDialog(
-        isVisible = isShow,
-        modifier = modifier,
-        shape = shape,
-        tonalElevation = tonalElevation,
-        colors = colors,
-        properties = properties,
-        onClick = {
+        onDismissRequest = onDismissRequest,
+        onConfirmClick = {
             onDateRangeSelected(
                 Pair(
                     dateRangePickerState.selectedStartDateMillis,
@@ -37,6 +31,11 @@ fun AppDateRangePickerDialog(
                 )
             )
         },
+        modifier = modifier,
+        shape = shape,
+        tonalElevation = tonalElevation,
+        colors = colors,
+        properties = properties,
         content = {
             AppDateRangePicker(
                 dateRangePickerState = dateRangePickerState,

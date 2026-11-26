@@ -2,6 +2,8 @@ package kz.rymbek.platform.common.core.design.foundation.components.chip.input
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.InputChip
 import androidx.compose.material3.InputChipDefaults
 import androidx.compose.material3.SelectableChipColors
@@ -25,6 +27,9 @@ fun AppInputChip(
     colors: SelectableChipColors = InputChipDefaults.inputChipColors(),
     elevation: SelectableChipElevation? = InputChipDefaults.inputChipElevation(),
     border: BorderStroke? = InputChipDefaults.inputChipBorder(enabled, selected),
+    horizontalArrangement: Arrangement.Horizontal = InputChipDefaults.horizontalArrangement(),
+    contentPadding: PaddingValues =
+        InputChipDefaults.contentPadding(avatar != null, leadingIcon != null, trailingIcon != null),
     interactionSource: MutableInteractionSource? = null,
 ) {
     InputChip(
@@ -40,6 +45,8 @@ fun AppInputChip(
         colors = colors,
         elevation = elevation,
         border = border,
+        horizontalArrangement = horizontalArrangement,
+        contentPadding = contentPadding,
         interactionSource = interactionSource,
     )
 }

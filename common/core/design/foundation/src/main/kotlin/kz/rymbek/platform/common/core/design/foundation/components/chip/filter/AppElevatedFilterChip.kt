@@ -2,6 +2,8 @@ package kz.rymbek.platform.common.core.design.foundation.components.chip.filter
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.ElevatedFilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.SelectableChipColors
@@ -24,6 +26,8 @@ fun AppElevatedFilterChip(
     colors: SelectableChipColors = FilterChipDefaults.elevatedFilterChipColors(),
     elevation: SelectableChipElevation? = FilterChipDefaults.elevatedFilterChipElevation(),
     border: BorderStroke? = null,
+    horizontalArrangement: Arrangement.Horizontal = FilterChipDefaults.horizontalArrangement(),
+    contentPadding: PaddingValues = FilterChipDefaults.ContentPadding,
     interactionSource: MutableInteractionSource? = null
 ) {
     ElevatedFilterChip(
@@ -38,6 +42,8 @@ fun AppElevatedFilterChip(
         colors = colors,
         elevation = elevation,
         border = border,
+        horizontalArrangement = horizontalArrangement,
+        contentPadding = contentPadding,
         interactionSource = interactionSource,
     )
 }

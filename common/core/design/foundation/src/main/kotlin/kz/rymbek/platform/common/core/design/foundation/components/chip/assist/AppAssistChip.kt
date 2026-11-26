@@ -2,6 +2,8 @@ package kz.rymbek.platform.common.core.design.foundation.components.chip.assist
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.ChipColors
@@ -23,6 +25,8 @@ fun AppAssistChip(
     colors: ChipColors = AssistChipDefaults.assistChipColors(),
     elevation: ChipElevation? = AssistChipDefaults.assistChipElevation(),
     border: BorderStroke? = AssistChipDefaults.assistChipBorder(enabled),
+    horizontalArrangement: Arrangement.Horizontal = AssistChipDefaults.horizontalArrangement(),
+    contentPadding: PaddingValues = AssistChipDefaults.ContentPadding,
     interactionSource: MutableInteractionSource? = null,
 ) {
     AssistChip(
@@ -35,6 +39,8 @@ fun AppAssistChip(
         colors = colors,
         elevation = elevation,
         border = border,
+        horizontalArrangement = horizontalArrangement,
+        contentPadding = contentPadding,
         interactionSource = interactionSource,
     )
 }

@@ -12,11 +12,11 @@ import androidx.compose.ui.state.ToggleableState
 @Composable
 fun AppTriStateCheckbox(
     state: ToggleableState,
+    onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
-    onClick: (() -> Unit)? = null,
     enabled: Boolean = true,
     colors: CheckboxColors = CheckboxDefaults.colors(),
-    interactionSource: MutableInteractionSource? = null
+    interactionSource: MutableInteractionSource? = null,
 ) {
     TriStateCheckbox(
         state = state,

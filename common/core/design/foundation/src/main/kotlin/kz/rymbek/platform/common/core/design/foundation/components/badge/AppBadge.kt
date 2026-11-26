@@ -13,7 +13,7 @@ fun AppBadge(
     modifier: Modifier = Modifier,
     containerColor: Color = BadgeDefaults.containerColor,
     contentColor: Color = contentColorFor(containerColor),
-    content: @Composable (RowScope.() -> Unit)? = null
+    content: @Composable (RowScope.() -> Unit)? = null,
 ) {
     Badge(
         modifier = modifier,

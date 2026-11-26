@@ -9,20 +9,19 @@ import androidx.compose.material3.carousel.HorizontalMultiBrowseCarousel
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 
 @Composable
 fun AppHorizontalMultiBrowseCarousel(
     state: CarouselState,
     preferredItemWidth: Dp,
     modifier: Modifier = Modifier,
-    itemSpacing: Dp = 0.dp,
+    itemSpacing: Dp = CarouselDefaults.ItemSpacing,
     flingBehavior: TargetedFlingBehavior =
         CarouselDefaults.singleAdvanceFlingBehavior(state = state),
     userScrollEnabled: Boolean = true,
     minSmallItemWidth: Dp = CarouselDefaults.MinSmallItemSize,
     maxSmallItemWidth: Dp = CarouselDefaults.MaxSmallItemSize,
-    contentPadding: PaddingValues = PaddingValues(0.dp),
+    contentPadding: PaddingValues = CarouselDefaults.ContentPadding,
     content: @Composable CarouselItemScope.(itemIndex: Int) -> Unit,
 ) {
     HorizontalMultiBrowseCarousel(

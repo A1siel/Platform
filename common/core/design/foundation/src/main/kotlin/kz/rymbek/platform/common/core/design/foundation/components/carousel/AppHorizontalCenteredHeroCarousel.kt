@@ -9,26 +9,25 @@ import androidx.compose.material3.carousel.HorizontalCenteredHeroCarousel
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 
 @Composable
 fun AppHorizontalCenteredHeroCarousel(
     state: CarouselState,
     modifier: Modifier = Modifier,
-    maxItemWidth: Dp = Dp.Unspecified,
-    itemSpacing: Dp = 0.dp,
+    preferredItemWidth: Dp = Dp.Unspecified,
+    itemSpacing: Dp = CarouselDefaults.ItemSpacing,
     flingBehavior: TargetedFlingBehavior =
         CarouselDefaults.singleAdvanceFlingBehavior(state = state),
     userScrollEnabled: Boolean = true,
     minSmallItemWidth: Dp = CarouselDefaults.MinSmallItemSize,
     maxSmallItemWidth: Dp = CarouselDefaults.MaxSmallItemSize,
-    contentPadding: PaddingValues = PaddingValues(0.dp),
+    contentPadding: PaddingValues = CarouselDefaults.ContentPadding,
     content: @Composable CarouselItemScope.(itemIndex: Int) -> Unit,
 ) {
     HorizontalCenteredHeroCarousel(
         state = state,
         modifier = modifier,
-        maxItemWidth = maxItemWidth,
+        preferredItemWidth = preferredItemWidth,
         itemSpacing = itemSpacing,
         flingBehavior = flingBehavior,
         userScrollEnabled = userScrollEnabled,

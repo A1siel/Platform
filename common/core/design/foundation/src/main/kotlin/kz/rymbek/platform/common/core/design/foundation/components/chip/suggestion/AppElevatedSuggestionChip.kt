@@ -2,6 +2,8 @@ package kz.rymbek.platform.common.core.design.foundation.components.chip.suggest
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.ChipColors
 import androidx.compose.material3.ChipElevation
 import androidx.compose.material3.ElevatedSuggestionChip
@@ -22,6 +24,8 @@ fun AppElevatedSuggestionChip(
     colors: ChipColors = SuggestionChipDefaults.elevatedSuggestionChipColors(),
     elevation: ChipElevation? = SuggestionChipDefaults.elevatedSuggestionChipElevation(),
     border: BorderStroke? = null,
+    horizontalArrangement: Arrangement.Horizontal = SuggestionChipDefaults.horizontalArrangement(),
+    contentPadding: PaddingValues = SuggestionChipDefaults.ContentPadding,
     interactionSource: MutableInteractionSource? = null,
 ) {
     ElevatedSuggestionChip(
@@ -34,6 +38,8 @@ fun AppElevatedSuggestionChip(
         colors = colors,
         elevation = elevation,
         border = border,
+        horizontalArrangement = horizontalArrangement,
+        contentPadding = contentPadding,
         interactionSource = interactionSource,
     )
 }

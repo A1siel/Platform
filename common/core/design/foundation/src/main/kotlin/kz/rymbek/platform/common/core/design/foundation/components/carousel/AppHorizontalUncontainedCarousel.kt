@@ -9,18 +9,17 @@ import androidx.compose.material3.carousel.HorizontalUncontainedCarousel
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 
 @Composable
 fun AppHorizontalUncontainedCarousel(
     state: CarouselState,
     itemWidth: Dp,
     modifier: Modifier = Modifier,
-    itemSpacing: Dp = 0.dp,
+    itemSpacing: Dp = CarouselDefaults.ItemSpacing,
     flingBehavior: TargetedFlingBehavior = CarouselDefaults.noSnapFlingBehavior(),
     userScrollEnabled: Boolean = true,
-    contentPadding: PaddingValues = PaddingValues(0.dp),
-    content: @Composable CarouselItemScope.(itemIndex: Int) -> Unit
+    contentPadding: PaddingValues = CarouselDefaults.ContentPadding,
+    content: @Composable CarouselItemScope.(itemIndex: Int) -> Unit,
 ) {
     HorizontalUncontainedCarousel(
         modifier = modifier,

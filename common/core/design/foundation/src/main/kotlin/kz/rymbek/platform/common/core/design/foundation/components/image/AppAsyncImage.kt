@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import coil3.compose.AsyncImage
+import coil3.compose.AsyncImagePainter.Companion.DefaultTransform
 import coil3.compose.AsyncImagePainter.State
 import coil3.request.ImageRequest
 import coil3.video.videoFramePercent
@@ -39,19 +40,54 @@ fun AppAsyncImage(
     clipToBounds: Boolean = true,
 ) {
     AsyncImage(
-        modifier = modifier
-            .background(MaterialTheme.colorScheme.outline),
         model = model ?: ImageRequest.Builder(context)
             .data(data)
             .videoFramePercent(0.1)
             .build(),
         contentDescription = contentDescription,
+        modifier = modifier
+            .background(MaterialTheme.colorScheme.outline),
         placeholder = placeholder,
         error = error,
         fallback = fallback,
         onLoading = onLoading,
         onSuccess = onSuccess,
         onError = onError,
+        alignment = alignment,
+        contentScale = contentScale,
+        alpha = alpha,
+        colorFilter = colorFilter,
+        filterQuality = filterQuality,
+        clipToBounds = clipToBounds,
+    )
+}
+
+@Composable
+fun AppAsyncImage(
+    data: Any?,
+    contentDescription: String?,
+    modifier: Modifier = Modifier,
+    model: Any? = null,
+    context: Context = LocalContext.current,
+    transform: (State) -> State = DefaultTransform,
+    onState: ((State) -> Unit)? = null,
+    alignment: Alignment = Alignment.Center,
+    contentScale: ContentScale = ContentScale.Fit,
+    alpha: Float = DefaultAlpha,
+    colorFilter: ColorFilter? = null,
+    filterQuality: FilterQuality = DefaultFilterQuality,
+    clipToBounds: Boolean = true,
+) {
+    AsyncImage(
+        model = model ?: ImageRequest.Builder(context)
+            .data(data)
+            .videoFramePercent(0.1)
+            .build(),
+        contentDescription = contentDescription,
+        modifier = modifier
+            .background(MaterialTheme.colorScheme.outline),
+        transform = transform,
+        onState = onState,
         alignment = alignment,
         contentScale = contentScale,
         alpha = alpha,

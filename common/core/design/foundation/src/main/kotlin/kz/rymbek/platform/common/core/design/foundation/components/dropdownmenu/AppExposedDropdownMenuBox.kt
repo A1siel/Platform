@@ -74,13 +74,13 @@ fun <T : Any, KEY : Any> AppExposedDropdownMenuBox(
     }
 
     ExposedDropdownMenuBox(
-        modifier = modifier,
         expanded = expanded.value,
         onExpandedChange = {
             if (enabled) {
                 expanded.value = it
             }
         },
+        modifier = modifier,
         content = {
             AppTextField(
                 modifier = Modifier

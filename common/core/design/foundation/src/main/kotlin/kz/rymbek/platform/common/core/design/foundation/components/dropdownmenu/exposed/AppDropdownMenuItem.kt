@@ -15,9 +15,9 @@ import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 
 @Composable
 fun AppDropdownMenuItem(
-    modifier: Modifier = Modifier,
     text: String,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingImageData: Any? = null,
     enabled: Boolean = true,
@@ -26,7 +26,6 @@ fun AppDropdownMenuItem(
     interactionSource: MutableInteractionSource? = null,
 ) {
     DropdownMenuItem(
-        modifier = modifier,
         text = {
             AppText(
                 modifier = Modifier,
@@ -34,6 +33,7 @@ fun AppDropdownMenuItem(
             )
         },
         onClick = onClick,
+        modifier = modifier,
         leadingIcon = leadingIcon,
         trailingIcon = {
             if (trailingImageData != null) {

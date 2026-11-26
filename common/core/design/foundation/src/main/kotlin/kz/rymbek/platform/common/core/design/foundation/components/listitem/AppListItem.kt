@@ -1,33 +1,42 @@
 package kz.rymbek.platform.common.core.design.foundation.components.listitem
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemColors
 import androidx.compose.material3.ListItemDefaults
+import androidx.compose.material3.ListItemElevation
+import androidx.compose.material3.ListItemShapes
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.Dp
 
 @Composable
 fun AppListItem(
-    headlineContent: @Composable (() -> Unit),
     modifier: Modifier = Modifier,
-    overlineContent: @Composable (() -> Unit)? = null,
-    supportingContent: @Composable (() -> Unit)? = null,
+    enabled: Boolean = true,
     leadingContent: @Composable (() -> Unit)? = null,
     trailingContent: @Composable (() -> Unit)? = null,
+    overlineContent: @Composable (() -> Unit)? = null,
+    supportingContent: @Composable (() -> Unit)? = null,
+    verticalAlignment: Alignment.Vertical = ListItemDefaults.verticalAlignment(),
+    shapes: ListItemShapes = ListItemDefaults.shapes(),
     colors: ListItemColors = ListItemDefaults.colors(),
-    tonalElevation: Dp = ListItemDefaults.Elevation,
-    shadowElevation: Dp = ListItemDefaults.Elevation
+    elevation: ListItemElevation = ListItemDefaults.elevation(),
+    contentPadding: PaddingValues = ListItemDefaults.ContentPadding,
+    content: @Composable () -> Unit,
 ) {
     ListItem(
-        headlineContent = headlineContent,
         modifier = modifier,
-        overlineContent = overlineContent,
-        supportingContent = supportingContent,
+        enabled = enabled,
         leadingContent = leadingContent,
         trailingContent = trailingContent,
+        overlineContent = overlineContent,
+        supportingContent = supportingContent,
+        verticalAlignment = verticalAlignment,
+        shapes = shapes,
         colors = colors,
-        tonalElevation = tonalElevation,
-        shadowElevation = shadowElevation,
+        elevation = elevation,
+        contentPadding = contentPadding,
+        content = content,
     )
 }

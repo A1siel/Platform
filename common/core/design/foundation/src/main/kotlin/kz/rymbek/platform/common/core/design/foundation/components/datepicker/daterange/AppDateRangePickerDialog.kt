@@ -15,7 +15,7 @@ fun AppDateRangePickerDialog(
     onDismissRequest: () -> Unit,
     onDateRangeSelected: (Pair<Long?, Long?>) -> Unit,
     modifier: Modifier = Modifier,
-    dateRangePickerState: DateRangePickerState = rememberDateRangePickerStateCustom(),
+    state: DateRangePickerState = rememberDateRangePickerStateCustom(),
     shape: Shape = DatePickerDefaults.shape,
     tonalElevation: Dp = DatePickerDefaults.TonalElevation,
     colors: DatePickerColors = DatePickerDefaults.colors(),
@@ -26,8 +26,8 @@ fun AppDateRangePickerDialog(
         onConfirmClick = {
             onDateRangeSelected(
                 Pair(
-                    dateRangePickerState.selectedStartDateMillis,
-                    dateRangePickerState.selectedEndDateMillis
+                    state.selectedStartDateMillis,
+                    state.selectedEndDateMillis
                 )
             )
         },
@@ -38,7 +38,7 @@ fun AppDateRangePickerDialog(
         properties = properties,
         content = {
             AppDateRangePicker(
-                dateRangePickerState = dateRangePickerState,
+                state = state,
             )
         },
     )

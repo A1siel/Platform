@@ -6,8 +6,10 @@ import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListDefaults
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.layout.LazyLayoutCacheWindow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberOverscrollEffect
 import androidx.compose.runtime.Composable
@@ -26,6 +28,7 @@ fun AppLazyColumn(
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,
     overscrollEffect: OverscrollEffect? = rememberOverscrollEffect(),
+    cacheWindow: LazyLayoutCacheWindow = LazyListDefaults.cacheWindow(state),
     content: LazyListScope.() -> Unit,
 ) {
     LazyColumn(
@@ -38,6 +41,7 @@ fun AppLazyColumn(
         flingBehavior = flingBehavior,
         userScrollEnabled = userScrollEnabled,
         overscrollEffect = overscrollEffect,
+        cacheWindow = cacheWindow,
         content = content,
     )
 }

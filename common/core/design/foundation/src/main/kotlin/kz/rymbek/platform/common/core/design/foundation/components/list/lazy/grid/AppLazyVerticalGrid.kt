@@ -6,10 +6,12 @@ import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyGridDefaults
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.lazy.layout.LazyLayoutCacheWindow
 import androidx.compose.foundation.rememberOverscrollEffect
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -28,6 +30,7 @@ fun AppLazyVerticalGrid(
     flingBehavior: FlingBehavior = ScrollableDefaults.flingBehavior(),
     userScrollEnabled: Boolean = true,
     overscrollEffect: OverscrollEffect? = rememberOverscrollEffect(),
+    cacheWindow: LazyLayoutCacheWindow = LazyGridDefaults.cacheWindow(state),
     content: LazyGridScope.() -> Unit
 ) {
     LazyVerticalGrid(
@@ -41,6 +44,7 @@ fun AppLazyVerticalGrid(
         flingBehavior = flingBehavior,
         userScrollEnabled = userScrollEnabled,
         overscrollEffect = overscrollEffect,
+        cacheWindow = cacheWindow,
         content = content,
     )
 }

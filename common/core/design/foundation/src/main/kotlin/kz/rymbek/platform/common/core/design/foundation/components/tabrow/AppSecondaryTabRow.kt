@@ -14,8 +14,8 @@ import kz.rymbek.platform.common.core.design.foundation.components.tabrow.base.T
 fun <T : ITabItem> AppSecondaryTabRow(
     tabItems: List<T>,
     modifier: Modifier = Modifier,
-    containerColor: Color = TabRowDefaults.primaryContainerColor,
-    contentColor: Color = TabRowDefaults.primaryContentColor,
+    containerColor: Color = TabRowDefaults.secondaryContainerColor,
+    contentColor: Color = TabRowDefaults.secondaryContentColor,
     divider: @Composable () -> Unit = { AppHorizontalDivider() },
     content: @Composable (page: Int) -> Unit,
 ) {

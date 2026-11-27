@@ -36,9 +36,7 @@ internal fun <T> TabsWithPagerHost(
                 state = pagerState,
                 modifier = Modifier
                     .fillMaxWidth(),
-                pageContent = {
-                    pageContent(it)
-                }
+                pageContent = { pageContent(it) }
             )
         }
     )

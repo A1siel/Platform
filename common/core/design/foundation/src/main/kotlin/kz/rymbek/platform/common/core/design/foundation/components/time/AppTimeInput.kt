@@ -1,8 +1,9 @@
 package kz.rymbek.platform.common.core.design.foundation.components.time
 
 import androidx.compose.material3.TimeInput
-import androidx.compose.material3.TimePickerColors
-import androidx.compose.material3.TimePickerDefaults
+import androidx.compose.material3.TimeInputColors
+import androidx.compose.material3.TimeInputDefaults
+import androidx.compose.material3.TimePickerShapes
 import androidx.compose.material3.TimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -11,7 +12,7 @@ import androidx.compose.ui.Modifier
 fun AppTimeInput(
     state: TimePickerState,
     modifier: Modifier = Modifier,
-    colors: TimePickerColors = TimePickerDefaults.colors(),
+    colors: TimeInputColors = TimeInputDefaults.colors(),
 ) {
     TimeInput(
         state = state,
@@ -19,3 +20,36 @@ fun AppTimeInput(
         colors = colors,
     )
 }
+
+@Composable
+fun AppTimeInput(
+    state: TimePickerState,
+    shapes: TimePickerShapes,
+    modifier: Modifier = Modifier,
+    colors: TimeInputColors = TimeInputDefaults.vibrantColors(),
+) {
+    TimeInput(
+        state = state,
+        shapes = shapes,
+        modifier = modifier,
+        colors = colors,
+    )
+}
+
+@Composable
+fun AppTimeInput(
+    state: TimePickerState,
+    shapes: TimePickerShapes,
+    toggle: @Composable () -> Unit,
+    modifier: Modifier = Modifier,
+    colors: TimeInputColors = TimeInputDefaults.vibrantColors(),
+) {
+    TimeInput(
+        state = state,
+        shapes = shapes,
+        toggle = toggle,
+        modifier = modifier,
+        colors = colors,
+    )
+}
+

@@ -11,6 +11,33 @@ import androidx.compose.ui.graphics.Shape
 
 @Composable
 fun AppSnackbar(
+    modifier: Modifier = Modifier,
+    action: @Composable (() -> Unit)? = null,
+    dismissAction: @Composable (() -> Unit)? = null,
+    actionOnNewLine: Boolean = false,
+    shape: Shape = SnackbarDefaults.shape,
+    containerColor: Color = SnackbarDefaults.color,
+    contentColor: Color = SnackbarDefaults.contentColor,
+    actionContentColor: Color = SnackbarDefaults.actionContentColor,
+    dismissActionContentColor: Color = SnackbarDefaults.dismissActionContentColor,
+    content: @Composable () -> Unit,
+) {
+    Snackbar(
+        modifier = modifier,
+        action = action,
+        dismissAction = dismissAction,
+        actionOnNewLine = actionOnNewLine,
+        shape = shape,
+        containerColor = containerColor,
+        contentColor = contentColor,
+        actionContentColor = actionContentColor,
+        dismissActionContentColor = dismissActionContentColor,
+        content = content,
+    )
+}
+
+@Composable
+fun AppSnackbar(
     snackbarData: SnackbarData,
     modifier: Modifier = Modifier,
     actionOnNewLine: Boolean = false,

@@ -15,7 +15,7 @@ internal fun <T> TabsWithPagerHost(
     tabItems: List<T>,
     modifier: Modifier = Modifier,
     createTabRow: @Composable (selectedIndex: Int, onTabClick: (Int) -> Unit) -> Unit,
-    content: @Composable (page: Int) -> Unit,
+    pageContent: @Composable (page: Int) -> Unit,
     initialPage: Int = 0,
 ) {
     val pagerState = rememberPagerState(
@@ -36,8 +36,8 @@ internal fun <T> TabsWithPagerHost(
                 state = pagerState,
                 modifier = Modifier
                     .fillMaxWidth(),
-                content = {
-                    content(it)
+                pageContent = {
+                    pageContent(it)
                 }
             )
         }

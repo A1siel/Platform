@@ -39,6 +39,6 @@ fun <T : ITabItem> AppSecondaryTabRow(
                 }
             )
         },
-        content = content
+        pageContent = content
     )
 }

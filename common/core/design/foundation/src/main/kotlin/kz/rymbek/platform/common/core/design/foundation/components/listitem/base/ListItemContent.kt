@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 
 @Composable
-fun ListItemHeadlineContent(
+fun ListItemContent(
     text: String,
     minLines: Int = 3,
 ) {

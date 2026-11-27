@@ -11,11 +11,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.rememberSliderState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -46,8 +46,12 @@ fun PlayerProgressSlider(
 ) {
     var duration by remember { mutableLongStateOf(1L) }
     var bufferedPosition by remember { mutableLongStateOf(0L) }
-    var sliderValue by remember { mutableFloatStateOf(0f) }
     var isDragging by remember { mutableStateOf(false) }
+
+    val sliderState = rememberSliderState(
+        value = 0F,
+        trackRange = 0f..duration.toFloat()
+    )
 
     val animatedThumbSize by animateDpAsState(
         targetValue = if (isDragging) 20.dp else 14.dp,
@@ -59,7 +63,7 @@ fun PlayerProgressSlider(
             duration = player?.duration?.coerceAtLeast(1L) ?: 1L
             bufferedPosition = player?.bufferedPosition ?: 0L
             if (!isDragging) {
-                sliderValue = player?.currentPosition?.toFloat() ?: 0f
+                sliderState.value = player?.currentPosition?.toFloat() ?: 0f
             }
             delay((if (player?.isPlaying == true) 100 else 500).milliseconds)
         }
@@ -68,17 +72,16 @@ fun PlayerProgressSlider(
     CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 0.dp) {
         AppSlider(
             modifier = modifier,
-            value = sliderValue,
+            state = sliderState,
             onValueChange = {
                 onInteraction()
                 isDragging = true
-                sliderValue = it
+                sliderState.value = it
             },
             onValueChangeFinished = {
-                player?.seekTo(sliderValue.toLong())
+                player?.seekTo(sliderState.value.toLong())
                 isDragging = false
             },
-            valueRange = 0f..duration.toFloat(),
             interactionSource = interactionSource,
             thumb = {
                 Box(

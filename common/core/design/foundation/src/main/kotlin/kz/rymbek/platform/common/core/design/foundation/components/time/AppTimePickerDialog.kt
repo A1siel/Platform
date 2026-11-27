@@ -3,8 +3,6 @@ package kz.rymbek.platform.common.core.design.foundation.components.time
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Keyboard
 import androidx.compose.material.icons.filled.Schedule
-import androidx.compose.material3.TimePickerColors
-import androidx.compose.material3.TimePickerDefaults
 import androidx.compose.material3.TimePickerDialog
 import androidx.compose.material3.TimePickerDialogDefaults
 import androidx.compose.material3.TimePickerState
@@ -34,7 +32,6 @@ fun AppTimePickerDialog(
     properties: DialogProperties = DialogProperties(usePlatformDefaultWidth = false),
     shape: Shape = TimePickerDialogDefaults.shape,
     containerColor: Color = TimePickerDialogDefaults.containerColor,
-    colors: TimePickerColors = TimePickerDefaults.colors(),
 ) {
     var showDial by remember { mutableStateOf(true) }
 
@@ -85,15 +82,9 @@ fun AppTimePickerDialog(
         containerColor = containerColor,
         content = {
             if (showDial) {
-                AppTimePicker(
-                    state = state,
-                    colors = colors,
-                )
+                AppTimePicker(state = state)
             } else {
-                AppTimeInput(
-                    state = state,
-                    colors = colors,
-                )
+                AppTimeInput(state = state)
             }
         },
     )

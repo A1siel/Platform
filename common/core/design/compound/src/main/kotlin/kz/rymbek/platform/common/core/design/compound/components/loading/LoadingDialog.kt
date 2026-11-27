@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,6 +21,7 @@ import kz.rymbek.platform.common.core.design.foundation.components.dialog.AppDia
 import kz.rymbek.platform.common.core.design.foundation.components.progressindicator.AppCircularProgressIndicator
 import kz.rymbek.platform.common.core.design.foundation.components.text.AppText
 import kz.rymbek.platform.common.core.design.foundation.constants.PlatformPaddings
+import kz.rymbek.platform.common.core.design.foundation.constants.PlatformSpacing
 
 @Preview(showBackground = true)
 @Composable
@@ -48,7 +50,11 @@ fun LoadingDialog(
                                 .padding(PlatformPaddings.content),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                            AppCircularProgressIndicator()
+                            AppCircularProgressIndicator(
+                                modifier = Modifier
+                                    .size(PlatformSpacing.space_24x)
+                            )
+
                             if (!message.isNullOrBlank()) {
                                 Spacer(modifier = Modifier.height(12.dp))
                                 AppText(

@@ -51,7 +51,7 @@ fun <T : ITabItem> AppSecondaryScrollableTabRow(
                 }
             )
         },
-        content = content
+        pageContent = content
     )
 }
 

@@ -2,9 +2,23 @@ package kz.rymbek.platform.common.core.design.foundation.components.segmentedbut
 
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.SingleChoiceSegmentedButtonRowScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
+
+@Composable
+fun AppSingleChoiceSegmentedButtonRow(
+    modifier: Modifier = Modifier,
+    space: Dp = SegmentedButtonDefaults.BorderWidth,
+    content: @Composable SingleChoiceSegmentedButtonRowScope.() -> Unit,
+) {
+    SingleChoiceSegmentedButtonRow(
+        modifier = modifier,
+        space = space,
+        content = content,
+    )
+}
 
 @Composable
 fun <T : Any> AppSingleChoiceSegmentedButtonRow(
@@ -15,7 +29,7 @@ fun <T : Any> AppSingleChoiceSegmentedButtonRow(
     modifier: Modifier = Modifier,
     space: Dp = SegmentedButtonDefaults.BorderWidth,
 ) {
-    SingleChoiceSegmentedButtonRow(
+    AppSingleChoiceSegmentedButtonRow(
         modifier = modifier,
         space = space,
         content = {

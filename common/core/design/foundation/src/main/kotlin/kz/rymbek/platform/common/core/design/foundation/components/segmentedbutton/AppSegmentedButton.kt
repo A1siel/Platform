@@ -2,6 +2,7 @@ package kz.rymbek.platform.common.core.design.foundation.components.segmentedbut
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material3.MultiChoiceSegmentedButtonRowScope
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonColors
 import androidx.compose.material3.SegmentedButtonDefaults
@@ -34,5 +35,30 @@ fun SingleChoiceSegmentedButtonRowScope.AppSegmentedButton(
         interactionSource = interactionSource,
         icon = icon,
         label = label,
+    )
+}
+
+@Composable
+fun MultiChoiceSegmentedButtonRowScope.AppSegmentedButton(
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+    shape: Shape,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    contentPadding: PaddingValues = SegmentedButtonDefaults.ContentPadding,
+    interactionSource: MutableInteractionSource? = null,
+    icon: @Composable () -> Unit = { SegmentedButtonDefaults.Icon(checked) },
+    label: @Composable () -> Unit,
+) {
+    SegmentedButton(
+        checked = checked,
+        onCheckedChange = onCheckedChange,
+        shape = shape,
+        modifier = modifier,
+        enabled = enabled,
+        contentPadding = contentPadding,
+        interactionSource = interactionSource,
+        icon = icon,
+        label = label
     )
 }

@@ -1,6 +1,5 @@
 package kz.rymbek.platform.common.core.design.foundation.components.slider
 
-import androidx.annotation.IntRange
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.RangeSlider
@@ -12,98 +11,26 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 
 @Composable
-fun AppRangeSlider(
-    value: ClosedFloatingPointRange<Float>,
-    onValueChange: (ClosedFloatingPointRange<Float>) -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
-    @IntRange(from = 0) steps: Int = 0,
-    onValueChangeFinished: (() -> Unit)? = null,
-    colors: SliderColors = SliderDefaults.colors(),
-) {
-    RangeSlider(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier,
-        enabled = enabled,
-        valueRange = valueRange,
-        steps = steps,
-        onValueChangeFinished = onValueChangeFinished,
-        colors = colors,
-    )
-}
-
-@Composable
-fun AppRangeSlider(
-    value: ClosedFloatingPointRange<Float>,
-    onValueChange: (ClosedFloatingPointRange<Float>) -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
-    onValueChangeFinished: (() -> Unit)? = null,
-    colors: SliderColors = SliderDefaults.colors(),
-    startInteractionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    endInteractionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    startThumb: @Composable (RangeSliderState) -> Unit = {
-        SliderDefaults.Thumb(
-            interactionSource = startInteractionSource,
-            colors = colors,
-            enabled = enabled,
-        )
-    },
-    endThumb: @Composable (RangeSliderState) -> Unit = {
-        SliderDefaults.Thumb(
-            interactionSource = endInteractionSource,
-            colors = colors,
-            enabled = enabled,
-        )
-    },
-    track: @Composable (RangeSliderState) -> Unit = { rangeSliderState ->
-        SliderDefaults.Track(
-            colors = colors,
-            enabled = enabled,
-            rangeSliderState = rangeSliderState,
-        )
-    },
-    @IntRange(from = 0) steps: Int = 0,
-) {
-    RangeSlider(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = modifier,
-        enabled = enabled,
-        valueRange = valueRange,
-        onValueChangeFinished = onValueChangeFinished,
-        colors = colors,
-        startInteractionSource = startInteractionSource,
-        endInteractionSource = endInteractionSource,
-        startThumb = startThumb,
-        endThumb = endThumb,
-        track = track,
-        steps = steps,
-    )
-}
-
-@Composable
 @ExperimentalMaterial3Api
 fun AppRangeSlider(
     state: RangeSliderState,
+    onValueChange: (ClosedFloatingPointRange<Float>) -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    onValueChangeFinished: (() -> Unit)? = null,
     colors: SliderColors = SliderDefaults.colors(),
-    startInteractionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    endInteractionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    startThumbInteractionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    endThumbInteractionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     startThumb: @Composable (RangeSliderState) -> Unit = {
         SliderDefaults.Thumb(
-            interactionSource = startInteractionSource,
+            interactionSource = startThumbInteractionSource,
             colors = colors,
             enabled = enabled,
         )
     },
     endThumb: @Composable (RangeSliderState) -> Unit = {
         SliderDefaults.Thumb(
-            interactionSource = endInteractionSource,
+            interactionSource = endThumbInteractionSource,
             colors = colors,
             enabled = enabled,
         )
@@ -118,11 +45,13 @@ fun AppRangeSlider(
 ) {
     RangeSlider(
         state = state,
+        onValueChange = onValueChange,
         modifier = modifier,
         enabled = enabled,
+        onValueChangeFinished = onValueChangeFinished,
         colors = colors,
-        startInteractionSource = startInteractionSource,
-        endInteractionSource = endInteractionSource,
+        startThumbInteractionSource = startThumbInteractionSource,
+        endThumbInteractionSource = endThumbInteractionSource,
         startThumb = startThumb,
         endThumb = endThumb,
         track = track,

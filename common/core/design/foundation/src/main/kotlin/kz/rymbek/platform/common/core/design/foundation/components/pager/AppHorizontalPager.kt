@@ -1,6 +1,7 @@
 package kz.rymbek.platform.common.core.design.foundation.components.pager
 
 import androidx.compose.foundation.OverscrollEffect
+import androidx.compose.foundation.gestures.BringIntoViewSpec
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.TargetedFlingBehavior
 import androidx.compose.foundation.gestures.snapping.SnapPosition
@@ -31,13 +32,12 @@ fun AppHorizontalPager(
     userScrollEnabled: Boolean = true,
     reverseLayout: Boolean = false,
     key: ((index: Int) -> Any)? = null,
-    pageNestedScrollConnection: NestedScrollConnection = PagerDefaults.pageNestedScrollConnection(
-        state,
-        Orientation.Horizontal
-    ),
+    pageNestedScrollConnection: NestedScrollConnection =
+        PagerDefaults.pageNestedScrollConnection(state, Orientation.Horizontal),
     snapPosition: SnapPosition = SnapPosition.Start,
     overscrollEffect: OverscrollEffect? = rememberOverscrollEffect(),
-    content: @Composable PagerScope.(page: Int) -> Unit
+    bringIntoViewSpec: BringIntoViewSpec = PagerDefaults.bringIntoViewSpec(state),
+    pageContent: @Composable PagerScope.(page: Int) -> Unit,
 ) {
     HorizontalPager(
         modifier = modifier,
@@ -54,6 +54,7 @@ fun AppHorizontalPager(
         pageNestedScrollConnection = pageNestedScrollConnection,
         snapPosition = snapPosition,
         overscrollEffect = overscrollEffect,
-        pageContent = content
+        bringIntoViewSpec = bringIntoViewSpec,
+        pageContent = pageContent
     )
 }

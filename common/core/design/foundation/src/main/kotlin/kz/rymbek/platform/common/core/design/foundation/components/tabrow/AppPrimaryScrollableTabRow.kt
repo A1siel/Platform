@@ -49,6 +49,6 @@ fun <T> AppPrimaryScrollableTabRow(
                 }
             )
         },
-        content = content
+        pageContent = content
     )
 }

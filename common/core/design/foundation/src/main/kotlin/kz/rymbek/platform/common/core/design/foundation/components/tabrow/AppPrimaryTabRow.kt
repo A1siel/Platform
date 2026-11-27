@@ -39,7 +39,7 @@ fun <T : ITabItem> AppPrimaryTabRow(
                 }
             )
         },
-        content = content
+        pageContent = content
     )
 }
 

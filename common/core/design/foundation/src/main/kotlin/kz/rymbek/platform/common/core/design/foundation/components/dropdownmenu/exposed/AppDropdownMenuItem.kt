@@ -40,7 +40,7 @@ fun AppDropdownMenuItem(
                 AppAsyncImage(
                     modifier = Modifier
                         .size(100.dp),
-                    data = trailingImageData,
+                    model = trailingImageData,
                 )
             }
         },

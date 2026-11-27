@@ -2,12 +2,14 @@ package kz.rymbek.platform.common.core.design.foundation.components.pullrefresh
 
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
+import androidx.compose.material3.pulltorefresh.PullToRefreshDefaults
 import androidx.compose.material3.pulltorefresh.PullToRefreshDefaults.Indicator
 import androidx.compose.material3.pulltorefresh.PullToRefreshState
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 
 @Composable
 fun AppPullToRefreshBox(
@@ -15,15 +17,17 @@ fun AppPullToRefreshBox(
     onRefresh: () -> Unit,
     modifier: Modifier = Modifier,
     state: PullToRefreshState = rememberPullToRefreshState(),
-    contentAlignment: Alignment = Alignment.Center,
+    contentAlignment: Alignment = Alignment.TopStart,
     indicator: @Composable BoxScope.() -> Unit = {
         Indicator(
             modifier = Modifier.align(Alignment.TopCenter),
             isRefreshing = isRefreshing,
-            state = state
+            state = state,
         )
     },
-    content: @Composable BoxScope.() -> Unit
+    enabled: Boolean = true,
+    threshold: Dp = PullToRefreshDefaults.PositionalThreshold,
+    content: @Composable BoxScope.() -> Unit,
 ) {
     PullToRefreshBox(
         isRefreshing = isRefreshing,
@@ -32,6 +36,8 @@ fun AppPullToRefreshBox(
         state = state,
         contentAlignment = contentAlignment,
         indicator = indicator,
+        enabled = enabled,
+        threshold = threshold,
         content = content,
     )
 }

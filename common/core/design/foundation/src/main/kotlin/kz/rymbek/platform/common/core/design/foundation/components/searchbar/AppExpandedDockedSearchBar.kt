@@ -21,7 +21,7 @@ fun AppExpandedDockedSearchBar(
     tonalElevation: Dp = SearchBarDefaults.TonalElevation,
     shadowElevation: Dp = SearchBarDefaults.ShadowElevation,
     properties: PopupProperties = PopupProperties(focusable = true, clippingEnabled = false),
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     ExpandedDockedSearchBar(
         state = state,

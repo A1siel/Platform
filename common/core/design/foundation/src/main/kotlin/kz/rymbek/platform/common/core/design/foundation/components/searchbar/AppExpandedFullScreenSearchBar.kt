@@ -18,6 +18,33 @@ fun AppExpandedFullScreenSearchBar(
     inputField: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     collapsedShape: Shape = SearchBarDefaults.inputFieldShape,
+    colors: SearchBarColors = SearchBarDefaults.containedColors(state = state),
+    tonalElevation: Dp = SearchBarDefaults.TonalElevation,
+    shadowElevation: Dp = SearchBarDefaults.ShadowElevation,
+    windowInsets: @Composable () -> WindowInsets = { SearchBarDefaults.fullScreenWindowInsets },
+    properties: DialogProperties = DialogProperties(),
+    content: @Composable ColumnScope.() -> Unit,
+) {
+    ExpandedFullScreenSearchBar(
+        state = state,
+        inputField = inputField,
+        modifier = modifier,
+        collapsedShape = collapsedShape,
+        colors = colors,
+        tonalElevation = tonalElevation,
+        shadowElevation = shadowElevation,
+        windowInsets = windowInsets,
+        properties = properties,
+        content = content,
+    )
+}
+
+@Composable
+fun ExpandedFullScreenSearchBar(
+    state: SearchBarState,
+    inputField: @Composable () -> Unit,
+    modifier: Modifier = Modifier,
+    collapsedShape: Shape = SearchBarDefaults.inputFieldShape,
     colors: SearchBarColors = SearchBarDefaults.colors(),
     tonalElevation: Dp = SearchBarDefaults.TonalElevation,
     shadowElevation: Dp = SearchBarDefaults.ShadowElevation,

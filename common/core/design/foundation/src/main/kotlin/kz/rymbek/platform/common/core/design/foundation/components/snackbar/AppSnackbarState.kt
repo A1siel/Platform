@@ -18,9 +18,10 @@ class AppSnackbarState(
     fun showSnackbar(
         message: String,
         actionLabel: String? = null,
-        withDismissAction: Boolean = false,
+        withDismissAction: Boolean = actionLabel != null,
         duration: SnackbarDuration =
             if (actionLabel == null) SnackbarDuration.Short else SnackbarDuration.Indefinite,
+        onDismissClick: () -> Unit = {},
         onActionClick: () -> Unit = {},
     ) {
         coroutineScope.launch {
@@ -32,12 +33,8 @@ class AppSnackbarState(
             )
 
             when (result) {
-                SnackbarResult.Dismissed -> {
-                }
-
-                SnackbarResult.ActionPerformed -> {
-                    onActionClick()
-                }
+                SnackbarResult.Dismissed -> onDismissClick()
+                SnackbarResult.ActionPerformed -> onActionClick()
             }
         }
     }
